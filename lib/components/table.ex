@@ -2,6 +2,9 @@ defmodule MixTape.Components.Table do
   @moduledoc """
   A flexible table component built with CVA (Class Variance Authority).
 
+  This component provides a rich set of variants to control the appearance and behavior of tables,
+  including background colors, borders, spacing, hover effects, and more.
+
   ## Basic Usage
 
   The simplest table requires an `id`, `rows` list, and column definitions:
@@ -25,8 +28,8 @@ defmodule MixTape.Components.Table do
       <.table
         id="products-table"
         rows={@products}
-        header_bg={:primary}
-        row_bg={:striped}
+        header_bg="primary"
+        row_bg="striped"
       >
         <:col :let={product} label="Name">
           {product.name}
@@ -51,11 +54,11 @@ defmodule MixTape.Components.Table do
       <.table
         id="orders-table"
         rows={@orders}
-        header_bg={:secondary}
-        row_bg={:hover_stripe}
-        border={:shadow}
-        spacing={:comfortable}
-        hover={:highlight}
+        header_bg="secondary"
+        row_bg="hover_stripe"
+        border="shadow"
+        spacing="comfortable"
+        hover="highlight"
       >
         <:col :let={order} label="Order #">
           #\{order.number}
@@ -83,9 +86,9 @@ defmodule MixTape.Components.Table do
         selectable={true}
         row_click={JS.navigate(~p"/tasks/\#{&1.id}")}
         row_id={& &1.id}
-        header_bg={:neutral}
-        row_bg={:white}
-        hover={:row}
+        header_bg="neutral"
+        row_bg="white"
+        hover="row"
       >
         <:col :let={task} label="Title">
           {task.title}

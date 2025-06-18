@@ -1,6 +1,9 @@
 defmodule MixTape.Components.Navbar do
   @moduledoc """
-  A flexible navbar component built with CVA (Class Variance Authority).
+  A flexible navbar component using CVA (Class Variance Authority).
+
+  The navbar component provides a responsive container for navigation elements with customizable
+  size, background shade, shadow effects, and content alignment options.
 
   ## Basic Usage
 
@@ -20,7 +23,7 @@ defmodule MixTape.Components.Navbar do
 
   A typical navbar with logo, navigation links, and user actions:
 
-      <.page_navbar size={:lg} shade={:medium} shadow={:lg}>
+      <.page_navbar size="lg" shade="medium" shadow="lg">
         <div class="flex justify-between items-center px-6 w-full">
           <div class="flex items-center gap-6">
             <img src="/images/logo.svg" alt="Logo" class="h-8" />
@@ -60,14 +63,62 @@ defmodule MixTape.Components.Navbar do
   For landing pages or marketing sites:
 
       <.page_navbar
-        size={:xl}
-        shade={:dark}
-        shadow={:xl}
-        centering={:centered_full}
+        size="xl"
+        shade="dark"
+        shadow="xl"
+        centering="centered_full"
       >
         <div class="flex flex-col gap-2 text-center">
           <h1 class="text-3xl font-bold text-primary">Welcome to MixTape</h1>
           <p class="text-base-content/70">Your music, your way</p>
+        </div>
+      </.page_navbar>
+
+  ## With Search Bar
+
+  Navbar with integrated search functionality:
+
+      <.page_navbar shade="light" shadow="sm">
+        <div class="flex justify-between items-center px-4 w-full">
+          <h2 class="text-lg font-semibold">Products</h2>
+          <div class="flex items-center gap-4">
+            <form class="relative">
+              <input
+                type="search"
+                placeholder="Search products..."
+                class="input input-bordered input-sm pr-10"
+              />
+              <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2">
+                <.icon name="hero-magnifying-glass" class="h-4 w-4" />
+              </button>
+            </form>
+            <.button size="sm" variant="primary">
+              <.icon name="hero-plus" class="h-4 w-4" />
+              Add Product
+            </.button>
+          </div>
+        </div>
+      </.page_navbar>
+
+  ## Mobile Responsive
+
+  Navbar with mobile menu toggle:
+
+      <.page_navbar size="md" shade="medium">
+        <div class="flex justify-between items-center px-4 w-full">
+          <h1 class="font-bold">Brand</h1>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex gap-4">
+            <.link navigate={~p"/"}>Home</.link>
+            <.link navigate={~p"/features"}>Features</.link>
+            <.link navigate={~p"/pricing"}>Pricing</.link>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden" phx-click="toggle-mobile-menu">
+            <.icon name="hero-bars-3" class="h-6 w-6" />
+          </button>
         </div>
       </.page_navbar>
 
